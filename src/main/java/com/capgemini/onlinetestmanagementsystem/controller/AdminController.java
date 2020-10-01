@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.capgemini.onlinetestmanagementsystem.entity.Question;
 import com.capgemini.onlinetestmanagementsystem.entity.*;
 import com.capgemini.onlinetestmanagementsystem.entity.TestEntity;
 
@@ -157,8 +158,40 @@ public class AdminController {
 		adminService.deleteAdmin(adminId);
 		return "Admin with id " + adminId + " Removed Successfully";
 	}
-	 	 
-	 
+	/*
+	 * Question Management
+	 * */ 	 
+	@GetMapping("/question")
+	public List<Question> getAllQuestions() {
+		return adminService.getAllQuestion();
+	}
+
+	@GetMapping("/question/{serialNo}")
+	public ResponseEntity<Question> getQuestionById(@PathVariable int serialNo)
+	{
+		return ResponseEntity.ok().body(adminService.getQuestionBySno(serialNo));
+	}
+
+    @PostMapping(path="/addQuestion" ,consumes="application/json",produces="application/json")
+    public ResponseEntity<Question> createQuestion(@RequestBody Question question )
+    {
+        return ResponseEntity.ok().body(this.adminService.createQuestion(question));
+    }
+	@PutMapping("/updateQuestion/{serialNo}")
+	public ResponseEntity<Question> updateQuestion(@PathVariable(value = "serialNo") int serialNo, @RequestBody Question question)
+	{     
+		question.setSerialNo(serialNo);
+        return ResponseEntity.ok().body(this.adminService.updateQuestion(question));
+    }
+	
+	
+	@DeleteMapping("/deleteQuestion/{serialNo}")
+    public String deleteQuestion(@PathVariable int serialNo)
+	{
+        this.adminService.deleteQuestion(serialNo);
+        return "Question details deleted successfully";
+    }
+
 	
 	
 	 
