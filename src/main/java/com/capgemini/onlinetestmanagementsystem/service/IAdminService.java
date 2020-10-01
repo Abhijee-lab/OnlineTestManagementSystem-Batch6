@@ -3,8 +3,7 @@ package com.capgemini.onlinetestmanagementsystem.service;
 import java.math.BigInteger;
 import java.util.List;
 
-
-
+import com.capgemini.onlinetestmanagementsystem.entity.*;
 import com.capgemini.onlinetestmanagementsystem.entity.TestEntity;
 
 public interface IAdminService 
@@ -17,5 +16,7 @@ public interface IAdminService
 	public List<TestEntity> fetchAll();
 	public TestEntity findById(BigInteger testId);
 	
-	
+	Admin loginAdmin(String adminName,String adminPassword);
+	Admin getAdmin(String adminId);
+	boolean deleteAdmin(String adminId);
 }
