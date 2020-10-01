@@ -14,6 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.capgemini.onlinetestmanagementsystem.entity.*;
 import com.capgemini.onlinetestmanagementsystem.exception.*;
+import com.capgemini.onlinetestmanagementsystem.dao.IQuestionDao;
+import com.capgemini.onlinetestmanagementsystem.entity.Question;
+import com.capgemini.onlinetestmanagementsystem.exception.ResourceNotFoundException;
 import com.capgemini.onlinetestmanagementsystem.dao.*;
 import com.capgemini.onlinetestmanagementsystem.dao.ITestDao;
 
@@ -184,7 +187,71 @@ public class AdminServiceImpl implements IAdminService{
 				adminRepository.deleteById(adminId);
 				return true;
 			}
+/*
+ * 
+ * Question Management
+ * */
+			@Autowired
+			IQuestionDao questionDao;
+			@Override
+			public Question createQuestion(Question question)
+			{
+				return questionDao.save(question);
+			}
 
+			@Override
+			public List<Question> getAllQuestion() 
+			{
+				return questionDao.findAll();
+			}
+
+			@Override
+			 public void deleteQuestion(int serialNo)
+			{
+				
+				Optional<Question> questionDb =questionDao.findById(serialNo);
+
+			        if (questionDb.isPresent())
+			        {
+			        	this.questionDao.delete(questionDb.get());
+			        }
+			            
+			        else
+			             {
+			              throw new ResourceNotFoundException("Record not found with id : " + serialNo);
+			            }
+			}
+			@Override
+			public Question getQuestionBySno(int serialNo)
+			{
+			 Optional < Question > questionDb = this.questionDao.findById(serialNo);
+			 if (questionDb.isPresent())
+				{
+		     return questionDb.get();
+				}
+			 throw new ResourceNotFoundException("Record not found with id : " +serialNo );
+		    }
+
+			@Override
+			public Question updateQuestion(Question question) 
+			{
+				 Optional < Question > questionDb = this.questionDao.findById(question.getSerialNo());
+			if (questionDb.isPresent())
+			{
+		        Question questionUpdate = questionDb.get();
+		        questionUpdate.setQuestionValue(question.getQuestionDomain());
+		        questionUpdate.setQuestionMarks(question.getQuestionMarks());
+		        questionUpdate.setQuestionDomain(question.getQuestionValue());
+		        questionUpdate.setCorrectOption(question.getCorrectOption());
+		        questionUpdate.setOption1(question.getOption1());
+		        questionUpdate.setOption2(question.getOption2());
+		        questionUpdate.setOption3(question.getOption3());
+		        questionUpdate.setOption4(question.getOption4());
+		        return questionUpdate;
+			}
+			  throw new ResourceNotFoundException("Record not found with id : " + question.getSerialNo());
+
+			}
 
 		
 }
