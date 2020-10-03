@@ -236,20 +236,12 @@ public class AdminServiceImpl implements IAdminService{
 			public Question updateQuestion(Question question) 
 			{
 				 Optional < Question > questionDb = this.questionDao.findById(question.getSerialNo());
-			if (questionDb.isPresent())
-			{
-		        Question questionUpdate = questionDb.get();
-		        questionUpdate.setQuestionValue(question.getQuestionDomain());
-		        questionUpdate.setQuestionMarks(question.getQuestionMarks());
-		        questionUpdate.setQuestionDomain(question.getQuestionValue());
-		        questionUpdate.setCorrectOption(question.getCorrectOption());
-		        questionUpdate.setOption1(question.getOption1());
-		        questionUpdate.setOption2(question.getOption2());
-		        questionUpdate.setOption3(question.getOption3());
-		        questionUpdate.setOption4(question.getOption4());
-		        return questionUpdate;
-			}
-			  throw new ResourceNotFoundException("Record not found with id : " + question.getSerialNo());
+					if (questionDb.isPresent())
+					{
+					  question = questionDao.save(question);
+					  return question;
+					}
+					throw new ResourceNotFoundException("Record not found with id : " + question.getSerialNo());
 
 			}
 
