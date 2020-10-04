@@ -1,16 +1,14 @@
 
 package com.capgemini.onlinetestmanagementsystem.entity;
 
-import java.math.*;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name = "onlinetestmanagementsystem")
 public class TestEntity{
