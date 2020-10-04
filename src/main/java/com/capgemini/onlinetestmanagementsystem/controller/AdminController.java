@@ -189,8 +189,24 @@ public class AdminController {
     }
 
 	
+	/*
+	  * This is a AssignTestMethod(Http) used to assign the test to user.
+	  * Method 	  : assignTest
+	  * Type 	  : String
+	  * parameters: userEntity and testEntity
+	  * Returns   : String
+	  * Author 	  : Abhijeet Singh
+	  * Date 	  : 29/9/2020
+	  * Version   : 1.0
+	  */
 	
-	 
+	 @PostMapping("/assign/{uid}/{tid}")
+		public ResponseEntity<Boolean> assignTest(@PathVariable("uid") Long userId,@PathVariable("tid") int testId) {
+			User result = service.assignTest(userId,testId);
+			  Log.info("Test Assigned ");
+			ResponseEntity<Boolean> response = new ResponseEntity<>(true, HttpStatus.OK);
+			return response;
+		}
 	 
 	 
 	
