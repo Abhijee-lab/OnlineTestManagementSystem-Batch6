@@ -26,5 +26,5 @@ public interface IAdminService
     public void deleteQuestion(int Sno);
     public Question getQuestionBySno(int Sno);
     public Question updateQuestion(Question question);
-
+public void assignTest(Long userId,int testId);
 }
