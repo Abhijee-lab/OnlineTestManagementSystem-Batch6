@@ -1,6 +1,6 @@
 package com.capgemini.onlinetestmanagementsystem.controller;
 
-import java.math.BigInteger;
+
 
 import java.util.List;
 
@@ -49,11 +49,7 @@ public class AdminController {
 	public ResponseEntity<TestEntity>addTest(@RequestBody @Valid TestEntity testEntity )
 	{
 		TestEntity test1=convertFromTestEntity(testEntity);
-		//DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yy HH:mm");
-		//LocalDateTime startTime =  LocalDateTime.parse(testEntity.getStartTime(), formatter);
-		//LocalDateTime endTime =  LocalDateTime.parse(testEntity.getEndTime(), formatter);
-		//test1.setStartTime(startTime);
-		//test1.setEndTime(endTime);
+		
 		TestEntity myTest=adminService.addTest(test1);
 		 
 		  System.out.println(myTest);
@@ -62,7 +58,7 @@ public class AdminController {
 	}
 	
 	@PutMapping("/update/{id}")
-	public ResponseEntity<TestEntity> updateTest(@PathVariable("id") BigInteger TestId, @RequestBody @Valid TestEntity testEntity) {
+	public ResponseEntity<TestEntity> updateTest(@PathVariable("id") Integer TestId, @RequestBody @Valid TestEntity testEntity) {
 		TestEntity test1=convertFromTestEntity(testEntity);
 		test1.setTestId(TestId);
 		testEntity = adminService.updateTest(TestId, test1);
@@ -72,7 +68,7 @@ public class AdminController {
 	}
 	
 	 @GetMapping("/remove/{id}")
-		public ResponseEntity<Boolean> deleteTest(@PathVariable("id") BigInteger testId) {
+		public ResponseEntity<Boolean> deleteTest(@PathVariable("id") Integer testId) {
 			TestEntity result = adminService.deleteTest(testId);
 			ResponseEntity<Boolean> response = new ResponseEntity<>(true, HttpStatus.OK);
 			return response;
@@ -80,7 +76,7 @@ public class AdminController {
 
 	 
 	 @GetMapping("/get/{id}")
-	 public ResponseEntity<TestEntity>getTest(@PathVariable("id") BigInteger testId){
+	 public ResponseEntity<TestEntity>getTest(@PathVariable("id") Integer testId){
 			TestEntity testEntity = adminService.findById(testId);
 			TestEntity myTest=convertFromTestEntity(testEntity);
 			ResponseEntity<TestEntity>response=new ResponseEntity<>(myTest, HttpStatus.OK);

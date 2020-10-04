@@ -2,7 +2,7 @@ package com.capgemini.onlinetestmanagementsystem.serviceImpl;
 
 
 
-import java.math.BigInteger;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -60,7 +60,7 @@ public class AdminServiceImpl implements IAdminService{
 			
 
 			@Override
-			public TestEntity updateTest(BigInteger testId, TestEntity test) 
+			public TestEntity updateTest(Integer testId, TestEntity test) 
 			{
 				boolean exists = testDao.existsById(testId);
 				if (exists)
@@ -78,7 +78,7 @@ public class AdminServiceImpl implements IAdminService{
 			 */
 
 			@Override
-			public TestEntity deleteTest(BigInteger testId) 
+			public TestEntity deleteTest(Integer testId) 
 			{
 				TestEntity test = findById(testId);
 				testDao.delete(test);
@@ -95,7 +95,7 @@ public class AdminServiceImpl implements IAdminService{
 
 
 			@Override
-			public TestEntity findById(BigInteger testId)
+			public TestEntity findById(Integer testId)
 			{
 				 Optional<TestEntity>optional=testDao.findById(testId);
 			     if(optional.isPresent())

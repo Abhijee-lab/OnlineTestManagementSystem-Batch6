@@ -10,6 +10,6 @@ import com.capgemini.onlinetestmanagementsystem.entity.TestEntity;
 
 
 
-public interface ITestDao extends JpaRepository<TestEntity,BigInteger>{
+public interface ITestDao extends JpaRepository<TestEntity,Integer>{
 
 }

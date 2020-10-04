@@ -12,10 +12,10 @@ public interface IAdminService
 	
 
 	public TestEntity addTest(TestEntity test);
-	public TestEntity updateTest(BigInteger testId, TestEntity test);
-	public TestEntity deleteTest(BigInteger testId);
+	public TestEntity updateTest(Integer testId, TestEntity test);
+	public TestEntity deleteTest(Integer testId);
 	public List<TestEntity> fetchAll();
-	public TestEntity findById(BigInteger testId);
+	public TestEntity findById(Integer testId);
 	
 	Admin loginAdmin(String adminName,String adminPassword);
 	Admin getAdmin(String adminId);

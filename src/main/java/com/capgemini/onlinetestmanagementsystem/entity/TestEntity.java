@@ -17,25 +17,25 @@ public class TestEntity{
 	@Id
 	@GeneratedValue
 
-	private BigInteger testId;
+	private Integer testId;
 	
 	private String testTitle;
-	private LocalTime testDuration;
+	private String testDuration;
 	
-	private BigDecimal testTotalMarks;
+	private int testTotalMarks;
 	
-	private BigDecimal testMarksScored;
+	private int testMarksScored;
 
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	private LocalDateTime startTime;
+	//@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private String startTime;
 	//@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone="GMT")
-	private LocalDateTime endTime;
+	private String endTime;
 	
-	public BigInteger getTestId() {
+	public Integer getTestId() {
 		return testId;
 	}
 
-	public void setTestId(BigInteger testId) {
+	public void setTestId(Integer testId) {
 		this.testId = testId;
 	}
 
@@ -47,46 +47,46 @@ public class TestEntity{
 		this.testTitle = testTitle;
 	}
 
-	public LocalTime getTestDuration() {
+	public String getTestDuration() {
 		return testDuration;
 	}
 
-	public void setTestDuration(LocalTime testDuration) {
+	public void setTestDuration(String testDuration) {
 		this.testDuration = testDuration;
 	}
 
-	public BigDecimal getTestTotalMarks() {
+	public int getTestTotalMarks() {
 		return testTotalMarks;
 	}
 
-	public void setTestTotalMarks(BigDecimal testTotalMarks) {
+	public void setTestTotalMarks(int testTotalMarks) {
 		this.testTotalMarks = testTotalMarks;
 	}
 	
 
 	
 
-	public BigDecimal getTestMarksScored() {
+	public int getTestMarksScored() {
 		return testMarksScored;
 	}
 
-	public void setTestMarksScored(BigDecimal testMarksScored) {
+	public void setTestMarksScored(int testMarksScored) {
 		this.testMarksScored = testMarksScored;
 	}
 
-	public LocalDateTime getStartTime() {
+	public String getStartTime() {
 		return startTime;
 	}
 
-	public void setStartTime(LocalDateTime startTime) {
+	public void setStartTime(String startTime) {
 		this.startTime = startTime;
 	}
 
-	public  LocalDateTime getEndTime() {
+	public  String getEndTime() {
 		return endTime;
 	}
 
-	public void setEndTime(LocalDateTime endTime) {
+	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
 
