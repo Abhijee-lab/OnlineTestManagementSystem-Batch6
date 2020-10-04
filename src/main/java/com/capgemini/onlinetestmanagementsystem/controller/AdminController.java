@@ -187,8 +187,16 @@ public class AdminController {
         this.adminService.deleteQuestion(serialNo);
         return "Question details deleted successfully";
     }
-
 	
+@GetMapping("/assign/{uid}/{tid}")
+		public ResponseEntity<Boolean> assignTest(@PathVariable("uid") Long userId,@PathVariable("tid") Long testId) {
+			User result = service.assignTest(userId);
+			  Log.info("Test Assigned ");
+			ResponseEntity<Boolean> response = new ResponseEntity<>(true, HttpStatus.OK);
+			return response;
+		
+			
+		}
 	
 	 
 	 
